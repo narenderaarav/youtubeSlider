@@ -1,0 +1,61 @@
+.topHeader{
+  width: 100%;
+  background: #fff;
+  box-shadow: 2px 2px 4px #eee;
+}
+
+.searchBar .input-group-text{
+  background: #fff!important;
+  border:none!important;
+  border-bottom:1px #ced4da solid!important;
+  border-radius:0px!important
+}
+
+.searchBar .form-control{
+  border:none!important;
+  border-bottom:1px #ced4da solid!important;
+  border-radius:0px!important
+}
+
+.logo{
+  width: 80px;
+}
+
+.mrLeft{
+  margin-left: 20%;
+  margin-right: 10%;
+}
+
+
+/* Navigation */
+
+.navContaint{
+  background: #fff;
+  
+}
+
+.navbar{
+  display: flex;
+  justify-content: center;
+}
+
+
+.navi{
+  flex-grow: 1;
+  padding-top: 20px;
+  
+}
+
+.navi ul{
+  display: flex;
+  ;
+}
+
+.navi li{
+  padding: 0px 15px;
+  list-style: none;
+  justify-content: center
+}
+.navi li:first-child{
+  padding-left: 0px;
+}
