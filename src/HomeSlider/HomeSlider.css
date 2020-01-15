@@ -3,10 +3,16 @@
   height: 300px;
   margin-left: auto;
   margin-right: auto;
+  
 }
 .swiper-slide {
   background-size: cover;
   background-position: center;
+  height: 100vh;
+  position: relative;
+}
+.swiper-slide iframe{
+  height: 100vh;
 }
 .gallery-top {
   height: 80%;
@@ -27,7 +33,7 @@
 }
 .overlay{
   background-color: rgba(0, 0, 0, 0.9);
-  position: fixed;
+  position: absolute;
   z-index: 99999;
   color: white;
   left:5%;
@@ -44,8 +50,8 @@ width: 35%;
 margin-left: auto;
 margin-right: auto;
 position: absolute;
-bottom: 10px;
-right: 10px;
+bottom: 60px;
+right: 20px;
 /*background: #000;*/
 padding: 10px;
 }

@@ -9,6 +9,7 @@ import HomeSlider from './HomeSlider/HomeSlider'
 function App() {
   return (
     <div className="App">
+      <TopHeader/>
       <HomeSlider/>
     </div>
   );
