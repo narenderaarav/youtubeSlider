@@ -2,21 +2,31 @@ import React, {Component} from "react";
 import './HomeSlider.css';
 import Swiper from 'swiper'
 class HomeSlider extends Component{
-  images = [
-    {      
-      thumbnail: process.env.PUBLIC_URL + 'chhotaBheem.jpg',
-      embedUrl: process.env.PUBLIC_URL + 'chhotaBhim.mp4'
-    },
-    {     
-      thumbnail: process.env.PUBLIC_URL + 'spiderman.jpg',
-      embedUrl: process.env.PUBLIC_URL + 'Spiderman.mp4'
-    },
-    {  
-      thumbnail: process.env.PUBLIC_URL + 'supermanandbatman.jpg',
-      embedUrl: process.env.PUBLIC_URL + 'thor.mp4'
-    },    
+  // images = [
+  //   {      
+  //     thumbnail: process.env.PUBLIC_URL + 'chhotaBheem.jpg',
+  //     embedUrl: process.env.PUBLIC_URL + 'chhotaBhim.mp4'
+  //   },
+  //   {     
+  //     thumbnail: process.env.PUBLIC_URL + 'spiderman.jpg',
+  //     embedUrl: process.env.PUBLIC_URL + 'Spiderman.mp4'
+  //   },
+  //   {  
+  //     thumbnail: process.env.PUBLIC_URL + 'supermanandbatman.jpg',
+  //     embedUrl: process.env.PUBLIC_URL + 'thor.mp4'
+  //   },    
     
-  ];
+  // ];
+
+  constructor(){
+    super();
+    this.state = {
+      videoData:[]
+    }
+  }
+
+  //var body = JSON.parse(result.body);
+
 
   componentDidMount(){
       this.galleryThumbs = new Swiper('.gallery-thumbs', {
@@ -44,6 +54,13 @@ class HomeSlider extends Component{
         swiper: this.galleryThumbs
       }
     });
+
+    fetch('http://159.89.160.172:3000/api')
+    .then(resp => resp.json())
+    .then(result => {
+        console.warn(result.data)
+        this.setState({videoData:result.data})
+    })
   }
 
   
@@ -59,33 +76,30 @@ class HomeSlider extends Component{
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
             </p>
         </div>
+        
           <div className="swiper-wrapper">
-            {this.images.map(item => (
-               <div className="swiper-slide"> 
-                   <video controls>
-                      <source src={item.embedUrl} type="video/mp4"/>
+            {this.state.videoData.map(item => (
+                <div className="swiper-slide"> 
+                    <video controls>
+                        <source src={item.videoUrl} type="video/mp4"/>
                     </video>
-               </div>
+
+              {/* <iframe width="100%" height="100%" src={item.embedUrl} 
+              frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe> */}
+                </div>
             ))}    	
-              {/* <div className="swiper-slide"> 
-              <iframe width="100%" 
-              src="https://www.youtube.com/embed/0NsBor0jY6Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen></iframe>
-              </div>
-              <div className="swiper-slide"
-              style ={ { backgroundImage: "url('assets/banner.png')" } }> </div>
-              <div className="swiper-slide" 
-              style ={ { backgroundImage: "url('assets/banner.png')" } }></div> */}
           </div>
+          
           <div className="swiper-button-next swiper-button-white"></div>
           <div className="swiper-button-prev swiper-button-white"></div>
       </div>
 
         <div className="swiper-container gallery-thumbs">
           <div className="swiper-wrapper">
-          {this.images.map(item => (
+          {this.state.videoData.map(item => (
                <div className="swiper-slide"
-               style ={ { backgroundImage: `url(${item.thumbnail})`} }></div>
+               style ={ { backgroundImage: `url(${item.contentType})`} }></div>
             ))}  
 
           </div>
@@ -94,12 +108,32 @@ class HomeSlider extends Component{
           <div className="swiper-button-prev swiper-button-white"></div>
           <div>
       </div>
+      
       </div>
   </>
   
     )
     
-  } 
+  // } 
+  // componentDidMount(){
+  //   this.playCurrentVideo();
+  // }
+
+  // _onSlide=  (data) => {
+  //   // console.log("on slide -- ", data);
+  //   this.playCurrentVideo();
+  // }
+
+  // playCurrentVideo(){
+  //   let videosList = document.querySelectorAll(".image-gallery-image video")
+  //   videosList.forEach(videoElement => {
+  //     videoElement.pause()
+  //   })
+  //   videosList = document.querySelectorAll(".center video");
+  //   videosList.forEach(videoEl => {
+  //     videoEl.play()
+  //   })
+  }
    
 }
 
